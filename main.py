@@ -5,7 +5,7 @@ import os.path
 import operator
 
 cachename = 'tmp.pkl'
-my_id = '123299850'
+my_id = '1232xxxx'
 
 def get_gadata(id,fname):
     query = {\
@@ -33,8 +33,14 @@ def get_data(id,fname):
 
 if __name__ == '__main__':
 
+    sample = True
+    sample_size = 10000
 
     df = get_data(my_id,cachename);
+    population = df.shape[0]
+
+    if sample:
+        df = df.sample(sample_size).copy()
 
     ppr = pc.process(df)
 

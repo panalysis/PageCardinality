@@ -30,7 +30,16 @@ class process(object):
 
         pairs = str.split('&')
         for i in pairs:
-            key,val = i.split('=',1)
+            tmp = i.split('=',1)
+            if len(tmp)==2:
+                key=tmp[0]
+                val=tmp[1]
+            elif len(tmp)==1:
+                key = tmp[0]
+                val=''
+            else:
+                key = i
+                val=''
             # create a new param object and set the attributes
             p = pagecardinality.param(key,val)
             params[key] = p

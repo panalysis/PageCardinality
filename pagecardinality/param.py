@@ -28,6 +28,9 @@ class param(object):
 
     def calculate_permutations(self):
         res = len(self.related_urls) * math.factorial(len(self.related_params)) * len(self.values.keys())
+        # as factorial combinations can be huge set the maximum number to the largest 32 bit unsigned integer
+        if res>2147483647:
+            res=2147483647
         return res
 
     def get_data(self):
