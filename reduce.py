@@ -2,37 +2,11 @@ import pandas as pd
 
 df = pd.read_pickle('tmp.pkl')
 
-params_remove = [
-    'limitno',
-    'q',
-    'v',
-    'c',
-    'm',
-    'a',
-    'v',
-    'w',
-    'postcode',
-    'responsive',
-    'searchsuburb',
-    'jinvid',
-    'jassignid',
-    'checksum',
-    'style',
-    'src_type',
-    'answer',
-    'sub_type',
-    'enable_hui_body',
-    'source',
-    'device_token',
-    'cr',
-    'lz',
-    'sms_source',
-    'redirect',
-    'dcr',
-    'url',
-    'from'
 
-]
+params_remove = []
+
+with open("params_to_exclude.txt", "r") as fp:
+    params_remove = fp.read().splitlines()
 
 def remove_params(url):
     retain = []

@@ -5,7 +5,7 @@ import os.path
 import operator
 
 cachename = 'tmp.pkl'
-my_id = '1232xxxx'
+my_id = '50170305'
 
 def get_gadata(id,fname):
     query = {\
@@ -33,7 +33,7 @@ def get_data(id,fname):
 
 if __name__ == '__main__':
 
-    sample = True
+    sample = False
     sample_size = 10000
 
     df = get_data(my_id,cachename);
