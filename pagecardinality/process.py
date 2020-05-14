@@ -13,17 +13,19 @@ class process(object):
 
     def __process_rows(self):
         # loop through each row in the dataframe and process
-        for index,row in self.df.iterrows():
+        for row in self.df.itertuples():
             # split the rows
-            stem,params = row['pagePath'].split('?',1)
-            p_array = self.__extract_params(params)
-            # store the individual parameter in the global results
-            for p in p_array.values():
-                p.related_urls = set([stem])
-                if p.param in self.results.keys():
-                    self.results[p.param].merge(p)
-                else:
-                    self.results[p.param] = p
+
+            if '?' in row.pagePath:
+                stem,params = row.pagePath.split('?',1)
+                p_array = self.__extract_params(params)
+                # store the individual parameter in the global results
+                for p in p_array.values():
+                    p.related_urls = set([stem])
+                    if p.param in self.results.keys():
+                        self.results[p.param].merge(p)
+                    else:
+                        self.results[p.param] = p
 
     def __extract_params(self,str):
         params = {}
